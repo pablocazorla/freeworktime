@@ -1,0 +1,113 @@
+// VARIABLES
+// COLORS
+@background-color: #92735B;
+@main-sidebar-background-color: #222;
+@main-header-background-color: fade(@main-sidebar-background-color, 50%);
+@white-color: #FFF;
+// SIZES
+@header-height: 60px;
+@main-sidebar-width: 260px;
+//
+body {
+  background-color: @background-color;
+}
+h1{
+	font-weight: 300;
+	letter-spacing: -0.05em;
+}
+//
+.main-header {
+  position: fixed;
+  z-index: 100;
+  left: 0;
+  top: 0;
+  right: 0;
+  height: @header-height;
+  line-height: @header-height;
+  background-color: @main-header-background-color;
+  color: @white-color;
+  .side-header,
+  .content-header {
+    position: absolute;
+    top: 0;
+    height: @header-height;
+    overflow: hidden;
+  }
+  .side-header {
+  	left: 0;
+    width: @main-sidebar-width;
+    .btn-menu,
+    .logo {
+      display: inline-block;
+      height: @header-height;
+      vertical-align: middle;
+    }
+    .btn-menu {
+      text-align: center;
+      width: @header-height;
+      font-size: 18px;
+      background-color: @main-sidebar-background-color;
+    }
+  }
+  .content-header {
+  	left: @main-sidebar-width;
+  	right: 0;
+    height: @header-height;
+    h1{
+    	font-size: 22px;  
+    }
+  }
+}
+.main-sidebar {
+  position: fixed;
+  z-index: 99;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: @main-sidebar-width;
+  background-color: @main-sidebar-background-color;
+  color: @white-color;
+
+  .main-sidebar-content{
+  	position: absolute;
+  	top: @header-height;;
+  	bottom: 0;
+  	left: 0;right: 0;
+  }
+}
+
+.main-content{
+	margin-top: @header-height;
+	margin-left:@main-sidebar-width;
+}
+
+.hidden-sidebar{
+	.main-header{
+		.side-header{
+			width: @header-height;
+		}
+		.content-header {
+	  	left: @header-height;
+	  }
+	}
+	.main-sidebar {
+		left: -1 * @main-sidebar-width;
+	}
+	.main-content{
+		margin-left:0;
+	}
+}
+
+
+//
+#list-collection{
+	padding: 25px;
+
+}
+.list-item{
+	padding: 0 10px;
+	line-height: 30px;
+	margin-bottom: 4px;
+	background-color: lighten(@main-sidebar-background-color, 10%);
+	color: @white-color;
+}
