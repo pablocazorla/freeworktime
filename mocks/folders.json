@@ -1,0 +1,17 @@
+[{
+	"id": 1,
+	"title": "Folder 1",
+	"lists":"4,1"
+}, {
+	"id": 2,
+	"title": "Folder 2",
+	"lists":"8"
+}, {
+	"id": 3,
+	"title": "Folder 3",
+	"lists":"5,3,2,6"
+}, {
+	"id": 4,
+	"title": "Folder 4",
+	"lists":"7"
+}]

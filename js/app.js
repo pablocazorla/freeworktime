@@ -1,1 +1,0 @@
-dragula([document.getElementById('list-collection')]);
