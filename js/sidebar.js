@@ -40,7 +40,7 @@
 			timeFolder: ko.observable(0)
 		};
 
-		vm.dragInfoVisible = ko.computed(function(){
+		vm.dragInfoVisible = ko.computed(function() {
 			return (vm.listFolder().length <= 0);
 		});
 
@@ -88,8 +88,15 @@
 		var vm = {
 			id: data.id,
 			title: ko.observable(data.title),
-			time: ko.observable(data.time)
+			time: ko.observable(data.time),
+			current: ko.observable(false)
 		};
+
+		vm.setCurrent = function() {
+
+	FWT.sidebarVM.setCurrent(vm.id)
+		};
+
 		return vm;
 	};
 
@@ -103,7 +110,8 @@
 
 
 		var onUpdate = false,
-			listOrder;
+			listOrder,
+			listsArray = [];
 
 		vm.update = function() {
 			onUpdate = true;
@@ -124,8 +132,9 @@
 					vm.list(tempList);
 					onUpdate = false;
 
-					// GET Folders
+					// GET lists
 					FWT.get('lists', function(data) {
+						listsArray = [];
 						var listCount = data.length,
 							folderList = vm.list(),
 							folderCount = folderList.length;
@@ -135,7 +144,11 @@
 							for (var i = 0; i < listCount; i++) {
 								var li = data[i];
 								if (tempFolder.listOrder.indexOf(li.id + '') >= 0) {
-									tempFolderList.push(listVM(li));
+
+									var newListVM = listVM(li);
+
+									tempFolderList.push(newListVM);
+									listsArray.push(newListVM);
 								}
 							}
 							orderList(tempFolderList, tempFolder.listOrder);
@@ -169,24 +182,23 @@
 					}, 50);
 				}
 			});
-			/*FWT.get('folders', function(data) {
-				var len = data.length,
-					arr = [];
-				for (var i = 0; i < len; i++) {
-					var f = folderVM(data[i]);
-					arr.push(f);
+		};
+
+		vm.setCurrent = function(id) {
+
+			var length = listsArray.length;
+			for (var i = 0; i < length; i++) {
+
+				if (listsArray[i].id == id) {
+					listsArray[i].current(true);
+				} else {
+					listsArray[i].current(false);
 				}
-				vm.list(arr);
-				FWT.get('lists', function(data) {
-					var len = data.length,
-						arr = [];
-					for (var i = 0; i < len; i++) {
-						var li = listVM(data[i]);
-						vm.getByID(data[i].id_folder).listFolder.push(li);
-					}
-				});
-			});*/
-		}
+			}
+		};
+
+
+
 		vm.init = function() {
 			ko.applyBindings(vm, document.getElementById('list-collection'));
 			vm.update();

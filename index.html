@@ -9,6 +9,8 @@
   <meta name="keywords" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
   <!-- CSS -->
+  <!--link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'-->
+  <link href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
   <!-- LESS -->
   <link rel="stylesheet/less" type="text/css" href="../pin/css/less/pin.less" />
@@ -23,48 +25,26 @@
     </div>
     <div class="content-header">
       <div class="container">
-        <h1>Proyect name</h1>
+        <h1>List name</h1>
+        <h2>Proyect name</h2>
       </div>
     </div>
   </div>
   <div class="main-sidebar">
     <div class="main-sidebar-content">
-      <!--
-
-<div id="list-collection" data-bind="foreach:list">
-        <div class="folder" data-bind="css:{open:open}">
-          <div class="folder-header" data-bind="click:toggleFolder">
-            <i class="fa fa-folder icon-in"></i><span class="title" data-bind="text:titleFolder"></span>
-            <div class="folder-info">
-              <span class="num" data-bind="text:timeFolder"></span>
-              <i class="fa fa-chevron-right folder-arrow"></i>
-            </div>
-          </div>
-          <div class="folder-content" data-bind="foreach:listFolder">
-            <div class="list-item">
-              <i class="fa fa-list icon-in"></i><span class="title" data-bind="text:title"></span>
-              <div class="list-item-info">
-                <span class="num" data-bind="text:time"></span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
--->
       <div id="list-collection" data-bind="sortable: {foreach: list}">
         <div class="folder" data-bind="css:{open:open}">
           <div class="folder-header" data-bind="click:toggleFolder">
-            <i class="fa fa-folder icon-in"></i><span class="title" data-bind="text:titleFolder"></span>
+            <i class="fa fa-folder-o icon-in"></i><i class="fa fa-folder-open-o icon-in"></i><span class="title" data-bind="text:titleFolder"></span>
             <div class="folder-info">
               <span class="num" data-bind="text:timeFolder"></span>
               <i class="fa fa-chevron-right folder-arrow"></i>
             </div>
           </div>
           <div class="folder-content">
-            <div  class="folder-content-list" data-bind="sortable: {foreach: listFolder, options: {group: 'omega' }}">
-              <div class="list-item">
-                <i class="fa fa-list icon-in"></i><span class="title" data-bind="text:title"></span>
+            <div class="folder-content-list" data-bind="sortable: {foreach: listFolder, options: {group: 'omega' }}">
+              <div class="list-item" data-bind="css:{current:current},click:setCurrent">
+                <i class="fa fa-list-ul icon-in"></i><span class="title" data-bind="text:title"></span>
                 <div class="list-item-info">
                   <span class="num" data-bind="text:time"></span>
                 </div>
@@ -94,5 +74,4 @@
   <script type="text/javascript" src="js/sidebar.js"></script>
   <script type="text/javascript" src="js/init.js"></script>
 </body>
-
-</html>
+</htm
