@@ -17,28 +17,38 @@
   <link rel="stylesheet/less" type="text/css" href="css/style.less" />
 </head>
 
-<body class="xhidden-sidebar">
-  <div class="main-sidebar">
-    <div class="main-header">
-      <a href="" class="btn-menu toggle-menu-trigger"><i class="fa fa-bars"></i></a>
+<body>
+  <a href="" class="btn-menu toggle-menu-trigger" title="Open menu"><i class="fa fa-bars"></i></a>
+  <div class="main-sidebar" id="sidebar">
+    <div class="main-header">      
       <span class="logo">FWT</span>
+      <a href="" class="btn-menu-close toggle-menu-trigger" title="Close menu"><i class="fa fa-times"></i></a>
     </div>
-    <div class="main-sidebar-content">
+    <div class="main-sidebar-content scroller">
       <div id="list-collection" data-bind="sortable: {foreach: list}">
         <div class="folder" data-bind="css:{open:open}">
-          <div class="folder-header" data-bind="click:toggleFolder">
-            <i class="fa fa-folder-o icon-in"></i><i class="fa fa-folder-open-o icon-in"></i><span class="title" data-bind="text:titleFolder"></span>
-            <div class="folder-info">
-              <span class="num" data-bind="text:timeFolder"></span>
-              <i class="fa fa-chevron-right folder-arrow"></i>
+          <div class="folder-header" data-bind="css:{editing:editing},click:toggleFolder">
+            <i class="fa fa-folder-o icon-in"></i><i class="fa fa-folder-open-o icon-in"></i>
+            <span class="title" data-bind="text:titleFolder"></span>
+            <div class="title-edit">
+              <input type="text" value="" data-bind="hasFocus:editing,value:titleFolder"/>
+            </div>            
+            <div class="folder-info right-info">              
+              <span class="num" data-bind="text:timeFolderFormatted"></span>
+              <a href="" data-bind="click:editFolder"><i class="fa fa-pencil"></i> edit</a>          
             </div>
           </div>
           <div class="folder-content">
             <div class="folder-content-list" data-bind="sortable: {foreach: listFolder, options: {group: 'omega' }}">
               <div class="list-item" data-bind="css:{current:current},click:setCurrent">
-                <i class="fa fa-list-ul icon-in"></i><span class="title" data-bind="text:title"></span>
-                <div class="list-item-info">
-                  <span class="num" data-bind="text:time"></span>
+                <i class="fa fa-list-ul icon-in"></i>
+                <span class="title" data-bind="text:title"></span>
+                <div class="title-edit">
+                  <input type="text" value="Folder 2"/>
+                </div> 
+                <div class="list-item-info right-info">                  
+                  <span class="num" data-bind="text:timeFormatted"></span>
+                  <a href=""><i class="fa fa-pencil"></i> edit</a>
                 </div>
               </div>
             </div>
@@ -50,6 +60,9 @@
         </div>
       </div>
     </div>
+    <div class="main-sidebar-bottom">
+      <a href=""><i class="fa fa-plus"></i> Add Project</a>      
+    </div>
   </div>
   <div class="main-content">
     <div class="main-header">
@@ -60,6 +73,7 @@
     </div>
     <div class="container">
       aaaa
+      <div style="height:3000px"></div>
     </div>
   </div>
   <script src="../pin/js/libs/less.min.js" type="text/javascript"></script>
@@ -67,6 +81,9 @@
   <script type="text/javascript" src="js/libs/sortable.min.js"></script>
   <script type="text/javascript" src="js/libs/ko.js"></script>
   <script type="text/javascript" src="js/libs/ko.sortable.js"></script>
+  <script type="text/javascript" src="js/libs/jquery.nicescroll.min.js"></script>
+
+  
   <!---->
   <script type="text/javascript" src="js/boot.js"></script>
   <script type="text/javascript" src="js/sidebar.js"></script>

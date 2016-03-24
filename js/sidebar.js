@@ -37,12 +37,22 @@
 			//
 			listFolder: ko.observableArray(),
 			open: ko.observable(false),
-			timeFolder: ko.observable(0)
+			timeFolder: ko.observable(0),
+			editing: ko.observable(false),
 		};
+
+		vm.timeFolderFormatted = ko.computed(function(){
+			//return vm.timeFolder() +'hs';
+			return '25:32hs';
+		});
 
 		vm.dragInfoVisible = ko.computed(function() {
 			return (vm.listFolder().length <= 0);
 		});
+
+		vm.editFolder = function(){
+			vm.editing(true);
+		};
 
 
 		var postOrderList = function() {
@@ -91,6 +101,9 @@
 			time: ko.observable(data.time),
 			current: ko.observable(false)
 		};
+		vm.timeFormatted = ko.computed(function(){
+			return vm.time() +'hs';
+		});
 
 		vm.setCurrent = function() {
 
@@ -200,7 +213,7 @@
 
 
 		vm.init = function() {
-			ko.applyBindings(vm, document.getElementById('list-collection'));
+			ko.applyBindings(vm, document.getElementById('sidebar'));
 			vm.update();
 		};
 
